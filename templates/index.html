@@ -3,58 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şəxsi Səhifəm</title>
+    <title>Qaraxanov Asim | Şəxsi Portfoli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        dark: '#1f2937',
+                        light: '#f3f4f6'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #74ABE2, #5563DE);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .header-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .header-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        .header-link:hover:after,
+        .header-link.active:after {
+            width: 100%;
         }
         .card {
-            background: white;
-            max-width: 400px;
-            text-align: center;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            animation: fadeIn 1.2s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .card img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #74ABE2;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        h1 {
-            margin: 10px 0;
-            font-size: 28px;
-            color: #333;
+        .skill-badge {
+            transition: all 0.3s ease;
         }
-        p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        .links a {
-            text-decoration: none;
-            color: white;
-            background: #5563DE;
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin: 5px;
-            display: inline-block;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-        .links a:hover {
-            background: #3743a0;
+        .skill-badge:hover {
             transform: scale(1.05);
+            background-color: #2563eb;
+            color: white;
+        }
+        .contact-icon {
+            transition: transform 0.3s ease;
+        }
+        .contact-icon:hover {
+            transform: translateY(-5px);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -62,19 +80,353 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-dark">
+    <!-- Шапка сайта -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary font-poppins">Qaraxanov Asim</a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="header-link font-medium">Haqqımda</a>
+                <a href="#skills" class="header-link font-medium">Bacarıqlar</a>
+                <a href="#projects" class="header-link font-medium">Layihələr</a>
+                <a href="#contact" class="header-link font-medium">Əlaqə</a>
+            </nav>
+            
+            <!-- Мобильное меню -->
+            <button id="mobile-menu-button" class="md:hidden text-primary">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Мобильное меню (скрытое) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute top-full left-0 right-0 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="header-link font-medium">Haqqımda</a>
+                <a href="#skills" class="header-link font-medium">Bacarıqlar</a>
+                <a href="#projects" class="header-link font-medium">Layihələr</a>
+                <a href="#contact" class="header-link font-medium">Əlaqə</a>
+            </div>
+        </div>
+    </header>
 
-    <div class="card">
-        <img src="static/a.png" alt="Mənim şəkilim">
-        <h1>Asim Qarxanov</h1>
-        <p>Salam! Mən web‑proqramlaşdırmaya yeni başlayan bir gəncəm. 
-           Yaradıcı işləri və yeni texnologiyaları öyrənməyi sevirəm. 🚀</p>
-        <div class="links">
-            <a href="https://t.me/senin_linkin" target="_blank">📲 Telegram</a>
-            <a href="https://github.com/senin_linkin" target="_blank">💻 GitHub</a>
+    <!-- Главный герой-баннер -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-primary to-secondary">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 font-poppins">Salam, mən Asim Qaraxanov</h1>
+            <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">İnformatika Təhsili alan məktəbli, gələcəyin kibertəhlükəsizlik mütəxəssisi</p>
+            <a href="#projects" class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">Layihələrimə bax</a>
+        </div>
+    </section>
+
+    <!-- Блок "Haqqımda" -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 font-poppins">Haqqımda</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
+                
+    <div class="md:w-1/3 flex justify-center">
+        <div class="relative">
+            <div class="bg-primary w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                <!-- Заменено здесь -->
+                <img 
+                    src="static/photo.jpg" 
+                    alt="Asim Qaraxanov" 
+                    class="w-full h-full object-cover"
+                />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-full shadow-lg">
+                <div class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fas fa-code text-xl"></i>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+                
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-bold text-dark mb-6">İT və Kibertəhlükəsizliklə maraqlanan gənc istedad</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Mən Asim Qaraxanov, məktəbliyəm və İnformatika Təhsili alıram. Texnologiyalarla, xüsusilə proqramlaşdırma, kibertəhlükəsizlik və Linux əməliyyat sistemləri ilə maraqlanıram. Kod yazmaq və mürəkkəb problemləri həll etmək mənim üçün həm bir həvəs, həm də bir çağırışdır.
+                    </p>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Gələcəkdə kibertəhlükəsizlik sahəsində ixtisaslaşmaq istəyirəm. İnternet təhlükəsizliyi və məlumatların qorunması dünyamız üçün getdikcə daha əhəmiyyətli olur və mən bu sahədə fərq yaratmaq istəyirəm. Məktəbdə və öz təşəbbüslərimlə əldə etdiyim bilik və təcrübələrimlə özümü hazırlayıram.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center bg-light rounded-lg px-4 py-2">
+                            <i class="fas fa-graduation-cap text-primary mr-2"></i>
+                            <span>İnformatika Təhsili</span>
+                        </div>
+                        <div class="flex items-center bg-light rounded-lg px-4 py-2">
+                            <i class="fas fa-shield-alt text-primary mr-2"></i>
+                            <span>Kibertəhlükəsizlik</span>
+                        </div>
+                        <div class="flex items-center bg-light rounded-lg px-4 py-2">
+                            <i class="fas fa-laptop-code text-primary mr-2"></i>
+                            <span>Proqramlaşdırma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Блок "Bacarıqlar" -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 font-poppins">Bacarıqlar</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">Müxtəlif texnologiyalar və alətlər üzrə inkişaf etdirdiyim bacarıqlarım</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Программирование -->
+                <div class="card bg-white p-8 rounded-xl shadow-md">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Proqramlaşdırma</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Python</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">HTML/CSS</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">JavaScript</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Scratch</span>
+                    </div>
+                </div>
+                
+                <!-- Кибербезопасность -->
+                <div class="card bg-white p-8 rounded-xl shadow-md">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Kibertəhlükəsizlik</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">CTF</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Şəbəkə Təhlükəsizliyi</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Etik Hacking</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Kriptoqrafiya</span>
+                    </div>
+                </div>
+                
+                <!-- Инструменты и ОС -->
+                <div class="card bg-white p-8 rounded-xl shadow-md">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Alətlər & Əməliyyat Sistemləri</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Linux</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Git</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">VS Code</span>
+                        <span class="skill-badge bg-blue-100 text-primary px-4 py-2 rounded-full">Wireshark</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок "Layihələr" -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4 font-poppins">Layihələr</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">İnkişaf etdirdiyim və iştirak etdiyim təhsil və şəxsi layihələr</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Проект 1 -->
+                <div class="card group bg-gray-50 rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-lock text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Password Manager</h3>
+                        <p class="text-gray-600 mb-4">Python-da yazılmış sadə şifrə meneceri. AES şifrələmə ilə istifadəçi məlumatlarını qoruyur.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Python</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">AES</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Tkinter</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium inline-flex items-center">
+                            Daha çox <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="card group bg-gray-50 rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">CTF Həllləri Kolleksiyası</h3>
+                        <p class="text-gray-600 mb-4">Müxtəlif CTF yarışlarında həll etdiyim tapşırıqların və problemlərin kolleksiyası.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Kibertəhlükəsizlik</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">CTF</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Linux</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium inline-flex items-center">
+                            Daha çox <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="card group bg-gray-50 rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-gamepad text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Space Adventure Oyunu</h3>
+                        <p class="text-gray-600 mb-4">Scratch-də yaradılmış kosmik səyahət mövzulu interaktiv oyun.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Scratch</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Oyun Dizaynı</span>
+                            <span class="text-xs bg-blue-100 text-primary px-2 py-1 rounded">Animasiya</span>
+                        </div>
+                        <a href="#" class="text-primary font-medium inline-flex items-center">
+                            Daha çox <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок "Əlaqə" -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary to-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-poppins">Əlaqə</h2>
+                <div class="w-20 h-1 bg-white mx-auto"></div>
+                <p class="text-blue-100 mt-6 max-w-2xl mx-auto">Mənimlə əlaqə saxlamaq istəyirsinizsə, aşağıdakı üsullardan istifadə edə bilərsiniz</p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8">
+                <div class="flex flex-col md:flex-row justify-center gap-12">
+                    <!-- Email -->
+                    <div class="text-center">
+                        <div class="contact-icon inline-block bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Email</h3>
+                        <p class="text-gray-600">qaraxanovasim99@gmail.com</p>
+                        <a href="mailto:asim@example.com" class="mt-4 inline-block text-primary font-medium">Məktub göndər</a>
+                    </div>
+                    
+                    <!-- Telegram -->
+                    <div class="text-center">
+                        <div class="contact-icon inline-block bg-primary text-white p-4 rounded-full mb-4">
+                            <i class="fab fa-telegram text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Telegram</h3>
+                        <p class="text-gray-600">https://t.me/+994558414922</p>
+                        <a href="#" class="mt-4 inline-block text-primary font-medium">Mesaj göndər</a>
+                    </div>
+                </div>
+                
+                <!-- Сообщение -->
+                <div class="mt-16 text-center">
+                    <p class="text-gray-600 italic">
+                        "Biliklərimi inkişaf etdirmək və kibertəhlükəsizlik sahəsində yeni imkanlar axtarıram. Təklifləriniz və təcrübə mübadiləsi üçün həmişə açığam."
+                    </p>
+                    <p class="mt-6 font-bold text-dark">- Asim Qaraxanov</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="py-10 bg-dark text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4 font-poppins">Qaraxanov Asim</h3>
+                <p class="text-gray-400 mb-6 max-w-xl mx-auto">İnformatika Təhsili alan məktəbli və gələcəyin kibertəhlükəsizlik mütəxəssisi</p>
+                
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-telegram text-xl"></i>
+                    </a>
+                </div>
+                
+                <p class="text-gray-500 text-sm">© 2023 Qaraxanov Asim. Bütün hüquqlar qorunur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Подсветка активного раздела при скролле
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav a, #mobile-menu a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card, #about > div > div').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
 </body>
 </html>
-
